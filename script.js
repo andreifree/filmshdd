@@ -1,5 +1,34 @@
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Smooth Scroll Functionality
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      if (targetId === "#" || !targetId) return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerOffset = 80; // Adjust for fixed header height
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+        // Close mobile menu if open
+        if (burgerMenu && mobileMenu) {
+          burgerMenu.classList.remove("open");
+          mobileMenu.classList.remove("open");
+        }
+      }
+    });
+  });
+
   // Burger Menu Toggle
   const burgerMenu = document.getElementById("burgerMenu");
   const mobileMenu = document.getElementById("mobileMenu");
@@ -34,6 +63,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // Product list button functionality
+  const listButtons = document.querySelectorAll(".btn-list");
+  listButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      window.location.href = "sellingPage.html";
+    });
+  });
 });
 
 document
