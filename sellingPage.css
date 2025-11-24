@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+}
+
+.movie-list-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.movie-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 40px;
+  align-items: start;
+}
+
+.movie-list {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-text {
+  color: #999;
+  font-size: 16px;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  padding: 14px 35px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-buy {
+  background-color: #ff6b35;
+  color: white;
+}
+
+.btn-buy:hover {
+  background-color: #e55a2b;
+  transform: translateY(-2px);
+}
+
+.btn-close {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.btn-close:hover {
+  background-color: #d0d0d0;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px 20px;
+}
+
+.movie-item {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  padding: 5px 0;
+}
+
+.movie-sidebar {
+  position: sticky;
+  top: 20px;
+}
+
+.disk-image-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.disk-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.disk-image:hover {
+  transform: scale(1.05);
+}
+
+.badge-2tb {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background-color: #ff6b35;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-2tb::before {
+  content: "💾";
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  .movie-content {
+    grid-template-columns: 1fr;
+  }
+
+  .movie-sidebar {
+    position: relative;
+    order: -1;
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 28px;
+  }
+
+  .movie-list {
+    padding: 20px;
+  }
+
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
