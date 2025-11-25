@@ -44,6 +44,17 @@
               <img src="assets/icons/dark-icon.svg" alt="dzen">
             </a>
           </div>
+          <button class="cart-icon" id="cartIcon" aria-label="Cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-badge" id="cartBadge">0</span>
+            <div class="cart-tooltip" id="cartTooltip">
+              <div class="cart-tooltip-content">Корзина пуста</div>
+            </div>
+          </button>
           <button class="burger-menu" id="burgerMenu" aria-label="Menu">
             <span></span>
             <span></span>
@@ -90,7 +101,7 @@
       <div class="products-container">
         <div class="products-grid">
           <!-- Product 1 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="1" data-collection-title="Советские 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup1.webp" data-collection-description="Лучшая коллекция советских фильмов в Full HD качестве">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup1.webp" alt="Советские 2 тб">
             </div>
@@ -108,7 +119,7 @@
           </div>
 
           <!-- Product 2 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="2" data-collection-title="Комедии и мелодрамы 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup2.webp" data-collection-description="Самые популярные комедии и мелодрамы в Full HD">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup2.webp" alt="Комедии и мелодрамы 2 тб">
               <div class="logo-badge">FILMS HDD</div>
@@ -128,7 +139,7 @@
           </div>
 
           <!-- Product 3 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="3" data-collection-title="Мультфильмы и Фентези 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup3.webp" data-collection-description="Лучшие мультфильмы и фантастика для всей семьи">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup3.webp" alt="Мультфильмы и Фентези 2 тб">
               <div class="logo-badge">FILMS HDD</div>
@@ -148,7 +159,7 @@
           </div>
 
           <!-- Product 4 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="4" data-collection-title="Мужская коллекция 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup4.webp" data-collection-description="Боевики, триллеры и экшн в Full HD качестве">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup4.webp" alt="Мужская коллекция 2 тб">
               <div class="logo-badge">FILMS HDD</div>
@@ -168,7 +179,7 @@
           </div>
 
           <!-- Product 5 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="5" data-collection-title="Marvel и Приключения 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup5.webp" data-collection-description="Все фильмы Marvel и лучшие приключения">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup5.webp" alt="Marvel и Приключения 2 тб">
               <div class="logo-badge">FILMS HDD</div>
@@ -187,7 +198,7 @@
           </div>
 
           <!-- Product 6 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="6" data-collection-title="Новинки 2025 - 2024 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup6.webp" data-collection-description="Самые свежие новинки кино 2024-2025">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup6.webp" alt="Новинки 2025 - 2024 2 тб">
               <div class="logo-badge">FILMS HDD</div>
@@ -206,7 +217,7 @@
           </div>
 
           <!-- Product 7 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="7" data-collection-title="Триллеры и Мистика 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup7.webp" data-collection-description="Лучшие триллеры и мистические фильмы">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup7.webp" alt="Триллеры и Мистика 2 тб">
               <div class="logo-badge">FILMS HDD</div>
@@ -225,7 +236,7 @@
           </div>
 
           <!-- Product 8 -->
-          <div class="product-card">
+          <div class="product-card" data-collection-id="8" data-collection-title="Лучшие сериалы Топ 2 тб" data-collection-price="14000" data-collection-image="./assets/images/HDD_Mockup8.webp" data-collection-description="Топовые сериалы всех времен">
             <div class="product-image">
               <img src="assets/images/HDD_Mockup8.webp" alt="Лучшие сериалы Топ 2 тб">
               <div class="logo-badge">FILMS HDD</div>
@@ -569,6 +580,83 @@
         </div>
       </div>
     </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+      <div class="cart-modal-overlay"></div>
+      <div class="cart-modal-content">
+        <div class="cart-modal-header">
+          <h2 class="cart-modal-title">Корзина</h2>
+          <button class="cart-modal-close" aria-label="Close">�</button>
+        </div>
+
+        <div class="cart-modal-body" id="cartModalBody">
+          <!-- Empty cart message -->
+          <div class="cart-empty" id="cartEmpty">
+            <p>Ваша корзина пуста</p>
+            <button class="btn-continue-shopping" onclick="closeCartModal()">
+              Продолжить покупки
+            </button>
+          </div>
+
+          <!-- Cart items -->
+          <div class="cart-items" id="cartItems"></div>
+        </div>
+
+        <div class="cart-modal-footer" id="cartFooter" style="display: none">
+          <div class="cart-total">
+            <span class="cart-total-label">Итого:</span>
+            <span class="cart-total-price" id="cartTotalPrice">0 ₽</span>
+          </div>
+
+          <form id="cartCheckoutForm" class="cart-checkout-form">
+            <div class="cart-form-group">
+              <label for="cartCustomerName">Имя</label>
+              <input type="text" id="cartCustomerName" placeholder="Ваше полное имя" required="">
+            </div>
+
+            <div class="cart-form-group">
+              <label for="cartCustomerContact">Контакт</label>
+              <p>(email, телефон, мессенджеры)</p>
+              <input type="text" id="cartCustomerContact" placeholder="Телефон или Email" required="">
+            </div>
+
+            <div class="cart-form-group">
+              <label for="cartCustomerAddress">Адрес доставки</label>
+              <p>не обязательно</p>
+              <textarea id="cartCustomerAddress" placeholder="Город, улица, дом, квартира" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="cart-checkout-btn">
+              <span class="cart-checkout-btn-text">Оформить заказ</span>
+              <span class="cart-checkout-btn-loader"></span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Success screen -->
+        <div class="cart-success" id="cartSuccess" style="display: none">
+          <div class="cart-success-icon">✓</div>
+          <h3 class="cart-success-title">Заказ успешно оформлен!</h3>
+          <div class="cart-success-info">
+            <p>
+              <strong>Номер заказа:</strong>
+              <span id="successCartOrderId"></span>
+            </p>
+            <p><strong>Сумма:</strong> <span id="successCartTotal"></span></p>
+          </div>
+          <p class="cart-success-message">
+            Наш менеджер свяжется с вами в ближайшее время для подтверждения
+            заказа.
+          </p>
+          <button class="btn-close-success" onclick="closeCartModal()">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="cart.js"></script>
     <script src="script.js"></script>
   
 
