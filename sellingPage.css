@@ -45,8 +45,10 @@ body {
 
 .action-buttons {
   display: flex;
-  gap: 15px;
-  margin-bottom: 40px;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 25px;
+  width: 100%;
 }
 
 .btn {
@@ -57,6 +59,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
+  width: 100%;
 }
 
 .btn-buy {
@@ -67,6 +70,61 @@ body {
 .btn-buy:hover {
   background-color: #e55a2b;
   transform: translateY(-2px);
+}
+
+.btn-buy.hidden {
+  display: none;
+}
+
+/* Product Quantity Control */
+.product-quantity-control {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 2px solid #ff6b35;
+  border-radius: 6px;
+  padding: 10px 18px;
+  gap: 15px;
+  min-width: 140px;
+}
+
+.product-quantity-control.active {
+  display: flex;
+}
+
+.product-qty-btn {
+  background: #ff6b35;
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.product-qty-btn:hover {
+  background: #e55a2b;
+  transform: scale(1.1);
+}
+
+.product-qty-btn:active {
+  transform: scale(0.95);
+}
+
+.product-qty-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  min-width: 30px;
+  text-align: center;
 }
 
 .btn-close {
@@ -96,25 +154,16 @@ body {
   top: 20px;
 }
 
-.disk-image-container {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.disk-image-container div {
+  width: 100%;
 }
 
 .disk-image {
   width: 100%;
-  max-width: 300px;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
-}
-
-.disk-image:hover {
-  transform: scale(1.05);
 }
 
 .badge-2tb {

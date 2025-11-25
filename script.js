@@ -67,14 +67,181 @@ document.addEventListener("DOMContentLoaded", function () {
   // Product list button functionality
   const listButtons = document.querySelectorAll(".btn-list");
   listButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      window.location.href = "sellingPage.html";
+    button.addEventListener("click", function (e) {
+      const productCard = e.target.closest(".product-card");
+      if (productCard) {
+        const collectionId = productCard.dataset.collectionId;
+        window.location.href = `product-${collectionId}.html`;
+      }
     });
   });
 
-  // Product buy button functionality
-  initCheckoutSystem();
+  // Product buy button functionality - Add to cart with quantity control
+  const buyButtons = document.querySelectorAll(".btn-buy");
+  buyButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const productCard = e.target.closest(".product-card");
+      if (productCard) {
+        const productData = {
+          id: productCard.dataset.collectionId,
+          title: productCard.dataset.collectionTitle,
+          price: parseInt(productCard.dataset.collectionPrice),
+          image: productCard.dataset.collectionImage,
+        };
+
+        // Check if product is already in cart
+        const existingItem = cart.find(item => item.id === productData.id);
+        
+        if (!existingItem) {
+          // Only add to cart if it's not already there
+          addToCart(productData);
+        }
+
+        // Show quantity control
+        showQuantityControl(button, productData.id);
+      }
+    });
+  });
+
+  // Initialize cart and update controls for existing items
+  loadCartFromLocalStorage();
+  updateAllProductQuantityControls();
 });
+
+// ============================================
+// PRODUCT QUANTITY CONTROL FUNCTIONS
+// ============================================
+
+function showQuantityControl(buyButton, productId) {
+  const productButtons = buyButton.parentElement;
+
+  // Check if quantity control already exists
+  let quantityControl = productButtons.querySelector(
+    ".product-quantity-control"
+  );
+
+  if (!quantityControl) {
+    // Create quantity control
+    quantityControl = document.createElement("div");
+    quantityControl.className = "product-quantity-control";
+    
+    // Get current cart item to show correct quantity
+    const cartItem = cart.find((item) => item.id === productId);
+    const currentQty = cartItem ? cartItem.quantity : 1;
+    
+    quantityControl.innerHTML = `
+      <button class="product-qty-btn qty-decrease" data-id="${productId}">−</button>
+      <span class="product-qty-value" data-id="${productId}">${currentQty}</span>
+      <button class="product-qty-btn qty-increase" data-id="${productId}">+</button>
+    `;
+    productButtons.appendChild(quantityControl);
+
+    // Add event listeners
+    const decreaseBtn = quantityControl.querySelector(".qty-decrease");
+    const increaseBtn = quantityControl.querySelector(".qty-increase");
+
+    decreaseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      handleProductQuantityChange(productId, -1);
+    });
+
+    increaseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      handleProductQuantityChange(productId, 1);
+    });
+  }
+
+  // Show quantity control and hide buy button
+  buyButton.classList.add("hidden");
+  quantityControl.classList.add("active");
+
+  // Update quantity display to ensure it's in sync with cart
+  updateProductQuantityDisplay(productId);
+}
+
+function handleProductQuantityChange(productId, change) {
+  const cartItem = cart.find((item) => item.id === productId);
+
+  if (cartItem) {
+    if (change > 0) {
+      increaseQuantity(productId);
+    } else {
+      decreaseQuantity(productId);
+    }
+
+    updateProductQuantityDisplay(productId);
+
+    // If quantity is 0, hide quantity control and show buy button
+    if (!cart.find((item) => item.id === productId)) {
+      hideQuantityControl(productId);
+    }
+  }
+}
+
+function updateProductQuantityDisplay(productId) {
+  const quantityValue = document.querySelector(
+    `.product-qty-value[data-id="${productId}"]`
+  );
+  const cartItem = cart.find((item) => item.id === productId);
+
+  if (quantityValue && cartItem) {
+    quantityValue.textContent = cartItem.quantity;
+  }
+}
+
+function hideQuantityControl(productId) {
+  const productCard = document.querySelector(
+    `[data-collection-id="${productId}"]`
+  );
+  if (productCard) {
+    const quantityControl = productCard.querySelector(
+      ".product-quantity-control"
+    );
+    const buyButton = productCard.querySelector(".btn-buy");
+
+    if (quantityControl) {
+      quantityControl.classList.remove("active");
+    }
+    if (buyButton) {
+      buyButton.classList.remove("hidden");
+    }
+  }
+}
+
+function updateAllProductQuantityControls() {
+  // First, get all product cards
+  const allProductCards = document.querySelectorAll(".product-card");
+
+  allProductCards.forEach((card) => {
+    const productId = card.dataset.collectionId;
+    const cartItem = cart.find((item) => item.id === productId);
+    const buyButton = card.querySelector(".btn-buy");
+    const quantityControl = card.querySelector(".product-quantity-control");
+
+    if (cartItem && cartItem.quantity > 0) {
+      // Product is in cart - show quantity control
+      if (buyButton && !quantityControl) {
+        showQuantityControl(buyButton, productId);
+      } else if (quantityControl) {
+        // Update existing control
+        buyButton.classList.add("hidden");
+        quantityControl.classList.add("active");
+        updateProductQuantityDisplay(productId);
+      }
+    } else {
+      // Product not in cart - show buy button
+      if (quantityControl) {
+        quantityControl.classList.remove("active");
+      }
+      if (buyButton) {
+        buyButton.classList.remove("hidden");
+      }
+    }
+  });
+}
 
 // ============================================
 // CHECKOUT SYSTEM

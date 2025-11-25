@@ -102,6 +102,11 @@ function updateCartUI() {
   updateCartModal();
   updateCartTooltip();
   updateCartIconVisibility();
+
+  // Update product quantity controls if they exist
+  if (typeof updateAllProductQuantityControls === "function") {
+    updateAllProductQuantityControls();
+  }
 }
 
 function updateCartBadge() {

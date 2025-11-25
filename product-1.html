@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Советские 2 тб - Список</title>
+    <link rel="stylesheet" href="sellingPage.css">
+    <link rel="icon" href="assets/icon%20for%20domen%20name.png">
+  </head>
+  <body>
+    <section class="movie-list-section">
+      <h2 class="section-title">Советские 2 тб - Список</h2>
+
+      <div class="movie-content">
+        <div class="movie-list">
+          <div class="movies-grid">
+            <div class="movie-item">
+              Летят журавли 8.2 Михаил Калатозов 1957
+            </div>
+            <div class="movie-item">
+              Баллада о солдате 8.2 Григорий Чухрай 1959
+            </div>
+            <div class="movie-item">
+              Семнадцать мгновений весны 8.8 Татьяна Лиознова 1973
+            </div>
+
+            <div class="movie-item">
+              Иван Васильевич меняет профессию 8.3 Леонид Гайдай 1973
+            </div>
+            <div class="movie-item">
+              Белое солнце пустыни 8.0 Владимир Мотыль 1970
+            </div>
+            <div class="movie-item">
+              Операция Ы и другие приключения Шурика 8.7 Леонид Гайдай 1965
+            </div>
+
+            <div class="movie-item">
+              Кавказская пленница 8.4 Леонид Гайдай 1966
+            </div>
+            <div class="movie-item">
+              Бриллиантовая рука 8.5 Леонид Гайдай 1968
+            </div>
+            <div class="movie-item">
+              Москва слезам не верит 8.1 Владимир Меньшов 1979
+            </div>
+
+            <div class="movie-item">
+              Служебный роман 8.3 Эльдар Рязанов 1977
+            </div>
+            <div class="movie-item">
+              Ирония судьбы, или С легким паром! 8.2 Эльдар Рязанов 1975
+            </div>
+            <div class="movie-item">
+              Джентльмены удачи 8.3 Александр Серый 1971
+            </div>
+
+            <div class="movie-item">
+              Место встречи изменить нельзя 8.9 Станислав Говорухин 1979
+            </div>
+            <div class="movie-item">
+              Любовь и голуби 7.9 Владимир Меньшов 1984
+            </div>
+            <div class="movie-item">Офицеры 7.9 Владимир Роговой 1971</div>
+
+            <div class="movie-item">
+              А зори здесь тихие 8.2 Станислав Ростоцкий 1972
+            </div>
+            <div class="movie-item">
+              Война и мир 8.3 Сергей Бондарчук 1966-1967
+            </div>
+            <div class="movie-item">Солярис 8.1 Андрей Тарковский 1972</div>
+
+            <div class="movie-item">Сталкер 8.1 Андрей Тарковский 1979</div>
+            <div class="movie-item">
+              Андрей Рублёв 8.1 Андрей Тарковский 1966
+            </div>
+            <div class="movie-item">Зеркало 8.0 Андрей Тарковский 1975</div>
+          </div>
+        </div>
+
+        <div class="movie-sidebar">
+          <div class="disk-image-container">
+            <div style="position: relative; display: inline-block">
+              <img src="assets/images/HDD_Mockup1.webp" alt="Советские 2 тб" class="disk-image">
+            </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="btn btn-buy" id="buyBtn">Купить</button>
+            <div class="product-quantity-control" id="quantityControl">
+              <button class="product-qty-btn qty-decrease">−</button>
+              <span class="product-qty-value">1</span>
+              <button class="product-qty-btn qty-increase">+</button>
+            </div>
+            <button class="btn btn-close" onclick="goBack()">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="cart.js"></script>
+    <script src="productPage.js"></script>
+    <script>
+      initProductPage({
+        id: "1",
+        title: "Советские 2 тб",
+        price: 14000,
+        image: "./assets/images/HDD_Mockup1.webp",
+      });
+    </script>
+  
+
+</body></html>
